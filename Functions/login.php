@@ -1,4 +1,5 @@
 <?php
+session_start();
 include "db_conn.php";
 
 
@@ -28,7 +29,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
                 mysqli_close($conn);
                 
                 if ($row['userName'] == $uname && $row['password'] == $pass) {
-                    $_SESSION['username'] = $row['userName'];
+                    $_SESSION['userName'] = $row['userName'];
                     
                     //redirect to menu page
                     

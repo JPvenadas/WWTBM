@@ -1,5 +1,6 @@
 <?php 
-
+     session_start();
+     if(isset($_SESSION["userName"])){
 ?>
 
 <!DOCTYPE html>
@@ -16,8 +17,17 @@
     <link rel="stylesheet" type="text/css" href="Styles/login.css">
 </head>
 <body>
-   Hello
+   <button>Resume</button>
+   <button>New game</button>
+   <button>Leaderboards</button>
+   <form action="../Functions/logout.php" method="POST">
+    <button>Logout</button>
+   </form>
 </body>
 </html>
 <?php
+     }else{
+        header("Location: ../index.php");
+        exit();
+     }
 ?>

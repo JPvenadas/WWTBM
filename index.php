@@ -1,5 +1,9 @@
 <?php 
-
+    session_start();
+    if(isset($_SESSION["userName"])){
+        header("Location: Pages/menu.php");
+        exit();
+    }else{
 ?>
 
 <!DOCTYPE html>
@@ -16,7 +20,7 @@
     <link rel="stylesheet" type="text/css" href="Styles/login.css">
 </head>
 <body>
-    <form action="Sql-commands/login.php" method="POST">
+    <form action="Functions/login.php" method="POST">
         <input required name="uname" placeholder="Username" type="text">
         <input required name="password" placeholder="Password" type="password">
         <button name="login">Login</button>
@@ -25,4 +29,5 @@
 </body>
 </html>
 <?php
+    }
 ?>
