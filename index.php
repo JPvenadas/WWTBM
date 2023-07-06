@@ -17,10 +17,10 @@
 </head>
 <body>
     <form action="Sql-commands/login.php" method="POST">
-        <input name="uname" placeholder="Username" type="text">
-        <input name="password" placeholder="Password" type="password">
-        <button>Login</button>
-        <button>New Player</button>
+        <input required name="uname" placeholder="Username" type="text">
+        <input required name="password" placeholder="Password" type="password">
+        <button name="login">Login</button>
+        <button name="new_player">New Player</button>
     </form>
 </body>
 </html>
