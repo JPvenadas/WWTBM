@@ -17,14 +17,7 @@
     <link rel="stylesheet" type="text/css" href="Styles/login.css">
 </head>
 <body>
-   <button>Resume</button>
-   <form action="../Functions/newGame.php" method="POST">
-    <button>New game</button>
-   </form>
-   <button>Leaderboards</button>
-   <form action="../Functions/logout.php" method="POST">
-        <button>Logout</button>
-   </form>
+   <h4>Game Over</h4>
 </body>
 </html>
 <?php
