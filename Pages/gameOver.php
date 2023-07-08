@@ -1,6 +1,14 @@
 <?php 
      session_start();
      if(isset($_SESSION["userName"])){
+        
+        include "../Functions/db_conn.php";
+        $conn = openCon();
+        $id = $_GET['id'];
+        $sql = "select * from tbl_scores where ID = '$id'";
+        $result = mysqli_query($conn, $sql);
+        $data = mysqli_fetch_assoc($result);
+        $price = $data['price']
 ?>
 
 <!DOCTYPE html>
@@ -17,7 +25,8 @@
     <link rel="stylesheet" type="text/css" href="Styles/login.css">
 </head>
 <body>
-   <h4>Game Over</h4>
+   <h3>Game Over</h3>
+   <h4>You have won <?php echo $price?>$</h4>
    <a href="menu.php">
     <button>back</button>
    </a>

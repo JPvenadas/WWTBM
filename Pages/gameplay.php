@@ -30,7 +30,7 @@
             $level = 1;
         }
 
-    $question = $_SESSION['questions'][$level];
+    $question = $_SESSION['questions'][$level - 1];
     ?>
     <form action="" method="post">
         <p><?php echo $level . ". " . $question['question']?></p>
@@ -51,6 +51,9 @@
             <?php echo $_SESSION['prices'][$level] ?>$
         </b></p>
     </div>
+    <a href="menu.php">
+        <button>back</button>
+    </a>
 </body>
 </html>
 <?php

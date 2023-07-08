@@ -41,12 +41,19 @@
             
             //if not, its game over
 
+            //record the score (the prices won)
+            $price = $_SESSION['prices'][$level - 1];
+            $sql ="INSERT INTO `tbl_scores`(`userName`, `price`) VALUES ('$uname','$price')";
+            mysqli_query($conn, $sql);
+            $recordedGame = mysqli_insert_id($conn);
+
             //Delete the previous saved game
             $sql = "DELETE FROM `tbl_sessions` WHERE userName = '$uname'";
             mysqli_query($conn, $sql);
             mysqli_close($conn);
-            header("Location: ../Pages/gameOver.php");
+            header("Location: ../Pages/gameOver.php?id=$recordedGame");
             exit();
+
         }
     }
     
