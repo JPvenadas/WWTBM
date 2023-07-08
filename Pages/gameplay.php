@@ -1,5 +1,6 @@
 <?php 
      session_start();
+     include "../Functions/db_conn.php";
      include "../Functions/checkAnswer.php";
      if(isset($_SESSION["userName"])){
 ?>
@@ -16,6 +17,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="Styles/login.css">
+
+   
 </head>
 <body>
     <?php
@@ -43,6 +46,11 @@
         <button name="finalAnswer" type="submit">final answer</button>
     </form>
     
+    <div>
+        <p>Question for: <b>
+            <?php echo $_SESSION['prices'][$level] ?>$
+        </b></p>
+    </div>
 </body>
 </html>
 <?php

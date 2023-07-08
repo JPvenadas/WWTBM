@@ -18,6 +18,9 @@
 </head>
 <body>
    <h4>Game Over</h4>
+   <a href="menu.php">
+    <button>back</button>
+   </a>
 </body>
 </html>
 <?php

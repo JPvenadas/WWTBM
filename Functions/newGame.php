@@ -2,6 +2,10 @@
     session_start();
     include "db_conn.php";
 
+
+    //set the prices
+    $_SESSION['prices'] = [0, 100, 200, 300, 500, 1000, 2000, 4000, 8000, 16000, 32000, 64000, 125000, 250000, 500000, 1000000];
+
     //open the connection
     $conn = openCon();
     // the sql command that will get random questions, 5 for each difficulty
@@ -37,9 +41,12 @@
             ) AS subquery;";
     $result = mysqli_query($conn, $sql);
     $questions = mysqli_fetch_all($result, MYSQLI_ASSOC);
+
+    //store the questions into session
     $_SESSION['questions'] = $questions;
 
 
+    //get the username from the session
     $uname = $_SESSION['userName'];
 
     //Delete the previous saved game
@@ -47,7 +54,9 @@
     mysqli_query($conn, $sql);
 
     //register a new game session
-    $sql = "INSERT INTO `tbl_sessions`(`userName`, `level`) VALUES ('$uname','1')";
+
+    $serializedArray = serialize($questions);
+    $sql = "INSERT INTO `tbl_sessions`(`userName`, `level`, `questions`) VALUES ('$uname','1', '$serializedArray')";
     mysqli_query($conn, $sql);
     mysqli_close($conn);
 

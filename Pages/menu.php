@@ -1,6 +1,14 @@
 <?php 
      session_start();
      if(isset($_SESSION["userName"])){
+
+        include "../Functions/db_conn.php";
+        $conn = openCon();
+        $uname = $_SESSION['userName'];
+        $sql = "SELECT EXISTS(SELECT 1 FROM tbl_sessions WHERE userName = '$uname') AS username_exists;";
+        $result = mysqli_query($conn, $sql);
+        $data = mysqli_fetch_assoc($result);
+        $usernameExist = $data['username_exists'];
 ?>
 
 <!DOCTYPE html>
@@ -16,16 +24,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="Styles/login.css">
 </head>
+
 <body>
-   <button>Resume</button>
-   <form action="../Functions/newGame.php" method="POST">
-    <button>New game</button>
-   </form>
-   <button>Leaderboards</button>
-   <form action="../Functions/logout.php" method="POST">
+    <?php if($usernameExist){?>
+        <form action="../Functions/Resume.php" method="POST">
+            <button type="submit" name="newGame">Resume</button>
+        </form>
+    <?php } ?>
+    <form action="../Functions/newGame.php" method="POST">
+        <button type="submit" name="newGame">New game</button>
+    </form>
+    <button>Leaderboards</button>
+    <form action="../Functions/logout.php" method="POST">
         <button>Logout</button>
-   </form>
+    </form>
 </body>
+
 </html>
 <?php
      }else{
