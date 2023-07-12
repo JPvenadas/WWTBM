@@ -1,0 +1,81 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    background: url("../Images/Background1.jpeg") no-repeat;
+    background-size: cover;
+    position: relative;
+    overflow: hidden;
+}
+.profile-container{
+    display: flex;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 80px;
+    width: 500px;
+    background: #311273;
+    border-radius: 0px 0px 40px 0px;
+    justify-content: flex-start;
+    padding: 0px 20px;
+    align-items: center;
+    gap: 20px;
+}
+.profile-pic{
+    width: 60px;
+    height: 60px;
+}
+.profile-name{
+    color: white;
+    font-weight: bold;
+    font-size: 20px;
+}
+.menu-content{
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: center;
+    align-items: center;
+    gap: 100px;
+}
+.menu-panel{
+    width: 467px;
+    height: 600px;
+    border-radius: 5px;
+    border: 5px solid #FFF;
+    background: #000C77;
+    display: flex;
+    align-items:  center;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 50px 0;
+}
+.menu-button{
+    padding: 15px 110px;
+    min-width: 360px;
+    font-size: 18px;
+    font-style: normal;
+    font-weight: 700;
+    background: rgb(10, 10, 154);
+    box-shadow: inset 0 0 30px #020202;
+    font-size: 17px;
+    color: white; 
+    border: 4px solid white;
+}
+.menu-button:hover{
+    background: rgb(41, 77, 128);
+}
+.primary-button-container{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+.logo{
+    width: 650px;
+    height: 570px;
+}

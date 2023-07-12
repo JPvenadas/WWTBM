@@ -48,7 +48,7 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
 
         //registration
         if(isset($_POST['new_player'])){
-
+            echo "clicked";
             //search if the username is available 
             $sql = "SELECT * FROM `tbl_users` WHERE userName = '$uname'";
             $result = mysqli_query($conn, $sql);
@@ -65,7 +65,9 @@ if (isset($_POST['uname']) && isset($_POST['password'])) {
                 mysqli_query($conn, $sql);
                 mysqli_close($conn);
 
-                header("Location: ../Pages/menu.php?notif=You created an account");
+                $_SESSION['userName'] = $uname;
+
+                header("Location: ../Pages/menu.php?notif=Welcome");
                 exit();
             }            
         }

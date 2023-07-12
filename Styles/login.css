@@ -1,0 +1,143 @@
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+}
+body{
+    width: 100vw;
+    height: 100vh;
+    background: url("../Images/Background2.jpg") no-repeat;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.logo{
+    width: 450px;
+    height: 400px;
+}
+.background-blur{
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.626);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    animation: spawn .3s ease forwards;
+    transform: scale(.98);
+}
+.login-form{
+    position: relative;
+    background: rgb(18, 18, 156);
+    display: flex;
+    gap: 10px;
+    flex-direction: column;
+    width: 500px;
+    height: 250px;
+    border-radius: 5px;
+    box-shadow: inset 0 0 30px #020202;
+    border: 4px solid white;
+    justify-content: center;
+    align-items: center;
+}
+.login-header{
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    color: white;
+    width: 90%;
+    position: absolute;
+    top: 0;
+}
+.container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+.show-flex{
+    display: flex;
+}
+.button{
+    background: rgb(10, 10, 154);
+    padding: 12px 180px;
+    border-radius: 5px;
+    border: 4px solid white;
+    color: white;
+    font-weight: bold;
+    box-shadow: inset 0 0 30px #020202;
+    font-size: 17px;
+}
+.button:hover{
+    background: rgb(16, 16, 205);
+}
+.login-button-container{
+    display: flex;
+    width: 90%;
+    justify-content: flex-end;
+    height: 40px;
+    gap: 10px;
+}
+.login-input{
+    height: 40px;
+    width: 90%;
+    padding: 0 20px;
+    font-size: 15px;
+    font-weight: bold;
+}
+.login-button{
+    width: 150px;
+    background: rgb(10, 10, 154);
+    box-shadow: inset 0 0 30px #020202;
+    font-size: 17px;
+    color: white;
+    font-weight: bold;
+}
+.login-button:hover{
+    background: rgb(41, 77, 128);
+}
+ion-icon{
+    font-size: 25px;
+}
+@keyframes spawn{
+    from{opacity: 0; transform: scale(.98);}
+    to{opacity: 1; transform: scale(1);}
+}
+.error-container{
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top:0;
+    left: 0;
+    height: 80px;
+    z-index: 8;
+}
+.error{
+    padding: 10px 20px;
+    width: 500px;
+    text-align: center;
+    background: rgba(255, 0, 0, 0.685);
+    color: rgb(255, 255, 255);
+    border-radius: 5px;
+    animation: fade forwards 3s;
+    max-width: 90%;
+}
+
+@keyframes fade{
+    0%{
+        opacity: 1;
+        display: block;
+    }
+    80%{
+        opacity: 1;
+        display: block
+    }
+    100%{
+        opacity: 0;
+        display: none;
+    }
+}

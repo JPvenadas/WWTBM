@@ -46,7 +46,7 @@
     $_SESSION['questions'] = $questions;
 
 
-    //get the username from the session
+    //get the username 
     $uname = $_SESSION['userName'];
 
     //Delete the previous saved game

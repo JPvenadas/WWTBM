@@ -20,12 +20,15 @@
     <link rel="stylesheet" type="text/css" href="Styles/login.css">
 </head>
 <body>
-    <form action="Functions/login.php" method="POST">
-        <input required name="uname" placeholder="Username" type="text">
-        <input required name="password" placeholder="Password" type="password">
-        <button name="login">Login</button>
-        <button name="new_player">New Player</button>
-    </form>
+    <?php include "Components/errorAlert.php"?>
+    <div class="container">
+        <img class="logo" src="Images/logo.png" alt="">
+        <button id="play" class="button">Play</button>
+    </div>
+    <?php include "Components/loginModal.php";?>
+
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
 <?php
