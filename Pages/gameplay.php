@@ -16,11 +16,12 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="Styles/login.css">
+    <link rel="stylesheet" type="text/css" href="../Styles/gameplay.css">
 
    
 </head>
 <body>
+    
     <?php
         $level;
         //determine the current level
@@ -30,30 +31,28 @@
             $level = 1;
         }
 
-    $question = $_SESSION['questions'][$level - 1];
+        $question = $_SESSION['questions'][$level - 1];
     ?>
-    <form action="" method="post">
-        <p><?php echo $level . ". " . $question['question']?></p>
-        <input type="hidden" name="questionID" value="<?php echo $question["ID"]?>">
-        <input value="<?php echo $question['optionA']?>" required type="radio" name="answer" id="A">
-        <label for="A"><?php echo $question['optionA']?></label>
-        <input value="<?php echo $question['optionB']?>" required type="radio" name="answer" id="B">
-        <label for="B"><?php echo $question['optionB']?></label>
-        <input value="<?php echo $question['optionC']?>" required type="radio" name="answer" id="C">
-        <label for="C"><?php echo $question['optionC']?></label>
-        <input value="<?php echo $question['optionD']?>" required type="radio" name="answer" id="D">
-        <label for="D"><?php echo $question['optionD']?></label>
-        <button name="finalAnswer" type="submit">final answer</button>
-    </form>
-    
-    <div>
-        <p>Question for: <b>
-            <?php echo $_SESSION['prices'][$level] ?>$
-        </b></p>
+
+    <div class="notif-space">
+        <div class="notif">
+            A question for <?php echo $_SESSION['prices'][$level]?>$
+            <br>
+            <span class="difficulty">(<?php echo $question['difficulty']?>)</span>
+        </div>
+        <div class="result-correct">
+            Your Answer is Correct!
+        </div >
+        <div class="result-incorrect">
+            Incorrect Answer!
+        </div >
     </div>
-    <a href="menu.php">
-        <button>back</button>
-    </a>
+
+    <?php include "../Components/prices.php"?>
+    <?php include "../Components/profile.php"?>
+    <?php include "../Components/question.php"?>
+
+
 </body>
 </html>
 <?php

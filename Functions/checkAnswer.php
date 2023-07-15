@@ -23,18 +23,24 @@
         }else{
             $level = 1;
         }
+        
         $nextlevel = $level + 1;
-    
-        $currentQuestion = $_SESSION['questions'][$nextlevel]['ID'];
-
-        //update the record in the session
-        $sql = "UPDATE `tbl_sessions` SET `level`='$nextlevel' WHERE userName = '$uname'";
-        mysqli_query($conn, $sql);
+        if($nextlevel >= 15){
+            $nextlevel = 'max';
+        }else{
+             //update the record in the session
+            $sql = "UPDATE `tbl_sessions` SET `level`='$nextlevel' WHERE userName = '$uname'";
+            mysqli_query($conn, $sql);
+        }
 
         //check if the answer is the same as the correct answer from the database
         if($answer == $correctAnswer){
             //if correct. proceed to the next round
-            header("Location: ../Pages/gameplay.php?level=$nextlevel");
+            if($nextlevel == 'max'){
+                header("Location: ../Pages/millionaire.php");
+            }else{
+                header("Location: ../Pages/gameplay.php?level=$nextlevel");
+            }
             mysqli_close($conn);
             exit();
         }else{
