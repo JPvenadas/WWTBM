@@ -1,4 +1,3 @@
-
 <form class="question-panel" action="" method="post">
     <div class="question text">
         <p><?php echo $level . ". " . $question['question']?></p>
@@ -29,6 +28,8 @@ var radioButtons = document.querySelectorAll('input[type="radio"]');
 var labels = document.querySelectorAll('label.option');
 var final = document.querySelector('.submit-button');
 var form = document.querySelector('.question-panel');
+const allOptions = document.querySelectorAll('input[name="answer"]');
+const correctAnswer = '<?php echo $question['correctAnswer']?>'
 
 function handleRadioChange() {
     labels.forEach(function(label) {
@@ -51,7 +52,6 @@ final.addEventListener('click', () => {
     //get the needed data
     const body = document.querySelector('body');
     const selectedOption = document.querySelector('input[name="answer"]:checked');
-    const correctAnswer = '<?php echo $question['correctAnswer']?>'
 
 
     //waiting animation
@@ -59,7 +59,6 @@ final.addEventListener('click', () => {
     body.classList.add('active');
 
     // Disable all unselected radio buttons
-    const allOptions = document.querySelectorAll('input[name="answer"]');
     allOptions.forEach((option) => {
         if (option !== selectedOption) {
             option.disabled = true;
@@ -92,9 +91,9 @@ final.addEventListener('click', () => {
 
             //change the text of the notif
             setTimeout(() => {
-                if(level == '15'){
+                if (level == '15') {
                     notif.innerHTML = "Congratulations! You have won a million Dollar!!"
-                }else{
+                } else {
                     notif.innerHTML = "Moving up to the next Round"
                 }
 
@@ -126,7 +125,98 @@ window.addEventListener('load', function() {
     const textElements = document.querySelectorAll('.text');
 
     for (let i = 0; i < textElements.length; i++) {
-    textElements[i].style.opacity = '1';
-  }
+        textElements[i].style.opacity = '1';
+    }
 });
+
+// 50:50 lifeline
+fiftyLifeline.addEventListener('click', () => {
+
+    //show the notif
+    let notif = document.querySelector('#fifty');
+    notif.style.display = 'block';
+
+    localStorage.setItem('fifty', 'false');
+
+    //disable the button
+    fiftyLifeline.disabled = true;
+    fiftyLifeline.style.background = 'gray';
+
+    // after 2 sec, 2 options will be disabled
+    setTimeout(() => {
+        let count = 0;
+        allOptions.forEach((option) => {
+
+            if (count == 2) {
+                return
+            }
+            const label = option.nextElementSibling;
+
+            //if the answer is correct reflect a green
+            if (option.value != correctAnswer) {
+                label.style.background = 'gray';
+                option.disabled = true;
+                count++
+            }
+        });
+    }, 2000);
+
+})
+
+// call a friend lifeline
+callLifeline.addEventListener('click', () => {
+
+    //timer text
+    const timerElement = document.querySelector('.call-timer');
+
+    //disable the button
+    callLifeline.disabled = true;
+    callLifeline.style.background = 'gray';
+
+    //save the usage of the lifeline, so you cant use it even in refresh
+    localStorage.setItem('call', 'false');
+
+    //show the notif
+    let notif = document.querySelector('#call');
+    notif.style.display = 'block';
+
+    //seconds in a minute
+    let secondsRemaining = 60;
+
+    let timer = setInterval(() => {
+        if(secondsRemaining >= 0){
+            timerElement.innerHTML = `(00:${secondsRemaining})`
+            secondsRemaining--
+        }else{
+            clearInterval(timer);
+            timerElement.innerHTML = `Time is up`
+        }        
+    }, 1000);
+})
+
+// switch lifeline
+switchLifeline.addEventListener('click', ()=>{
+     //disable the button
+    switchLifeline.disabled = true;
+    switchLifeline.style.background = 'gray';
+
+    //save the usage of the lifeline, so you cant use it even in refresh
+    localStorage.setItem('switch', 'false');
+
+    //show the notif
+    let notif = document.querySelector('#switch');
+    notif.style.display = 'block';
+
+    //move to the new url
+    setTimeout(() => {
+        // Get the current URL
+        var currentUrl = window.location.href;
+        // Add a query parameter to the URL
+        var newUrl = currentUrl + (currentUrl.includes('?') ? '&' : '?') + 'substitute=1';
+        // Navigate to the updated URL
+        window.location.href = newUrl;
+    }, 2500);
+
+})
+
 </script>

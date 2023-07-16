@@ -1,6 +1,4 @@
 <?php
-
-
     if(isset($_POST["finalAnswer"])){
 
         // get the answer, the question, and the player
@@ -14,7 +12,6 @@
         $result = mysqli_query($conn, $sql);
         $question = mysqli_fetch_assoc($result);
         $correctAnswer = $question['correctAnswer'];
-
 
          //determine the current level
         $level;
@@ -37,7 +34,14 @@
         if($answer == $correctAnswer){
             //if correct. proceed to the next round
             if($nextlevel == 'max'){
-                header("Location: ../Pages/millionaire.php");
+
+                 //record the score (the prices won)
+                $price = $_SESSION['prices'][15];
+                $sql ="INSERT INTO `tbl_scores`(`userName`, `price`) VALUES ('$uname','$price')";
+                mysqli_query($conn, $sql);
+                $recordedGame = mysqli_insert_id($conn);
+                header("Location: ../Pages/gameOver.php?id=$recordedGame");
+
             }else{
                 header("Location: ../Pages/gameplay.php?level=$nextlevel");
             }

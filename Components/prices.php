@@ -1,17 +1,12 @@
-<?php
-    $level;
-    //determine the current level
-    if(isset($_GET['level'])){
-        $level = $_GET['level'];
-    }else{
-        $level = 1;
-    }
-?>
 <div class="price-panel">
     <div class="lifelines">
-        <button class="lifeline"></button>
-        <button class="lifeline"></button>
-        <button class="lifeline"></button>
+        <button id="fiftyLifeline" title="Removes 2 option from the choices" class="lifeline">50:50</button>
+        <button id="switchLifeline" title="Switch the question with another one" class="lifeline">
+            <ion-icon name="sync-circle"></ion-icon>
+        </button>
+        <button id="callLifeline"  title="You will be given a minute to call a friend" class="lifeline">
+            <ion-icon name="call"></ion-icon>
+        </button>
     </div>
     <div class="prices">
         <div id="price15" class="price white">$ 1,000,000</div>
@@ -35,6 +30,24 @@
     </a>
 </div>
 <script>
+    //lifeline buttons
+    let fiftyLifeline =document.getElementById('fiftyLifeline');
+    let callLifeline =document.getElementById('callLifeline');
+    let switchLifeline =document.getElementById('switchLifeline');
+
+    if(localStorage.getItem('fifty') == 'false'){
+        fiftyLifeline.disabled = true;
+        fiftyLifeline.style.background = 'gray';
+    }
+    if(localStorage.getItem('call') == 'false'){
+        callLifeline.disabled = true;
+        callLifeline.style.background = 'gray';
+    }
+    if(localStorage.getItem('switch') == 'false'){
+        switchLifeline.disabled = true;
+        switchLifeline.style.background = 'gray';
+    }
+
     //get the current level that is in the get param
     const urlParams = new URLSearchParams(window.location.search);
     let level = urlParams.get('level');
@@ -42,7 +55,6 @@
     if(level == null){
         level = 1;
     }
-    
 
     let Highlightedprice = document.querySelector("#price" + level)
 

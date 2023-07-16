@@ -31,30 +31,23 @@
             $level = 1;
         }
 
-        $question = $_SESSION['questions'][$level - 1];
+        if(isset($_GET['substitute'])){
+            $question = $_SESSION['questions'][15];
+        }else{
+            $question = $_SESSION['questions'][$level - 1];
+        }
     ?>
 
-    <div class="notif-space">
-        <div class="notif">
-            A question for <?php echo $_SESSION['prices'][$level]?>$
-            <br>
-            <span class="difficulty">(<?php echo $question['difficulty']?>)</span>
-        </div>
-        <div class="result-correct">
-            Your Answer is Correct!
-        </div >
-        <div class="result-incorrect">
-            Incorrect Answer!
-        </div >
-    </div>
-
+    <?php include "../Components/notifications.php"?>
     <?php include "../Components/prices.php"?>
     <?php include "../Components/profile.php"?>
     <?php include "../Components/question.php"?>
 
-
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 </html>
+
 <?php
      }else{
         header("Location: ../index.php");

@@ -22,14 +22,24 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <link rel="stylesheet" type="text/css" href="Styles/login.css">
+    <link rel="stylesheet" type="text/css" href="../Styles/result.css">
 </head>
 <body>
-   <h3>Game Over</h3>
-   <h4>You have won <?php echo $price?>$</h4>
-   <a href="menu.php">
-    <button>back</button>
-   </a>
+   <?php include "../Components/profile.php"?>
+   <div class="result-panel">
+      <h3>Game Over!</h3>
+      <h4>You have won</h4>
+      <h5>$ <?php echo number_format($price)?></h5>
+      <img class="dollar-image" src="../Images/Dollar.png" alt="">
+      <div class="button-container">
+         <a href="menu.php">
+            <button class="button">Exit</button>      
+         </a>
+         <button class="button">
+            Leaderboard
+         </button>
+      </div>
+   </div>
 </body>
 </html>
 <?php
