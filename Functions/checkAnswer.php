@@ -22,7 +22,7 @@
         }
         
         $nextlevel = $level + 1;
-        if($nextlevel >= 15){
+        if($nextlevel >= 16){
             $nextlevel = 'max';
         }else{
              //update the record in the session

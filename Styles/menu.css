@@ -81,3 +81,102 @@ body{
     position: relative;
     top: 30px
 }
+.background-blur{
+    z-index: 100;
+    position: absolute;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.626);
+    display: none;
+    justify-content: center;
+    align-items: center;
+    animation: spawn .3s ease forwards;
+    transform: scale(.98);
+}
+
+@keyframes spawn{
+    from{opacity: 0; transform: scale(.98);}
+    to{opacity: 1; transform: scale(1);}
+}
+.leaderboard-panel{
+    width: 1000px;
+    height: 500px;
+    background: white;
+    border-radius: 5px;
+    border: 5px solid #FFF;
+    background: #000C77;
+    display: flex;
+    align-items:  center;
+    flex-direction: column;
+    justify-content: space-between;
+
+}
+.leaderboard-header{
+    width: 100%;
+    height: 80px;
+    display: flex;
+    align-items: flex-end;
+    background-color: #311273;
+    position: relative;
+}
+.leaderboard-header img{
+    width: 200px;
+    position: relative;
+    top: 60px;
+}
+.leaderboard-header p{
+    font-size: 30px;
+    color: white;
+    font-weight: bold;
+    padding: 20px 0;
+}
+.close-button{
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    color: white;
+    border-style: none;
+    background: none
+}
+.close-button ion-icon{
+    font-size: 30px;
+}
+.leaderboard-body{
+    height: calc(100% - 80px);
+    width: 100%;
+    overflow-y: scroll;
+    display: flex;
+    flex-direction: column;
+}
+.leaderboard-body::-webkit-scrollbar {
+    display: none; /* Hide the scrollbar */
+  }
+.leaderboard-body .item{
+    width: 100%;
+    height: 70px;
+    border-bottom: 1px solid rebeccapurple;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 40px;
+}
+.left{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+.left h5{
+    font-size: 20px;
+    color: white;
+    font-weight: bold;
+}
+.right div{
+    color: goldenrod;
+    font-size: 25px;
+    font-weight: bold;
+}
+.rank{
+    font-size: 19px;
+    color: goldenrod;
+    font-weight: bold;
+}

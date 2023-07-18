@@ -40,7 +40,8 @@
 
     <?php include "../Components/notifications.php"?>
     <?php include "../Components/prices.php"?>
-    <?php include "../Components/profile.php"?>
+    <?php include "../Components/profile.php";
+    attachProfile($_SESSION['userName']);?>
     <?php include "../Components/question.php"?>
 
     <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>

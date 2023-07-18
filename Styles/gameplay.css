@@ -218,13 +218,15 @@ body{
     align-items: center;
     background: linear-gradient(rgb(243, 188, 39), rgb(213, 143, 5));
     top: 100px;
-    animation: hide-above ease 3s forwards;
+    animation: hide-above ease 2.2s forwards;
+    z-index: 99;
 }
 .notif-lifeline{
     font-size: 19px !important;
     display: none;
     background: rgba(5, 64, 159, 0.956);
     animation: show-hide-above ease 3s forwards;
+    z-index: 98;
 }
 .minute-animation{
     animation: minute ease 65s forwards !important;
@@ -232,10 +234,12 @@ body{
 .result-correct{
     background: rgb(9, 108, 6);
     top: -100px;
+    z-index: 100;
 }
 .result-incorrect{
     background: rgb(202, 60, 25);
     top: -100px;
+    z-index: 100;
 }
 .show-up-above{
     top: 100px !important;

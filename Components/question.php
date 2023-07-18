@@ -1,5 +1,8 @@
+<!--this is a component that contains the question and the options. the below script also contains functions that will make the lifelines work-->
+
 <form class="question-panel" action="" method="post">
     <div class="question text">
+        <!-- Question -->
         <p><?php echo $level . ". " . $question['question']?></p>
     </div>
     <div class="options">
@@ -24,13 +27,27 @@
 </form>
 
 <script>
-var radioButtons = document.querySelectorAll('input[type="radio"]');
-var labels = document.querySelectorAll('label.option');
-var final = document.querySelector('.submit-button');
-var form = document.querySelector('.question-panel');
-const allOptions = document.querySelectorAll('input[name="answer"]');
-const correctAnswer = '<?php echo $question['correctAnswer']?>'
 
+//************************************************************** */
+//all the radio buttons
+var radioButtons = document.querySelectorAll('input[type="radio"]');
+//all the labels of each radio-button
+var labels = document.querySelectorAll('label.option');
+// the final answer button
+var final = document.querySelector('.submit-button');
+// the form containing the question and the options
+var form = document.querySelector('.question-panel');
+//get all the options by using the name
+const allOptions = document.querySelectorAll('input[name="answer"]');
+// the correct answer for the current question
+const correctAnswer = '<?php echo $question['correctAnswer']?>'
+//the timer used when the "call a friend" lifeline is used
+let timer
+
+//************************************************************** */
+
+
+// a function used to change the color of the selected option. if an option is clicked it will have a class "selected", then turn yellow
 function handleRadioChange() {
     labels.forEach(function(label) {
         label.classList.remove('selected');
@@ -43,16 +60,17 @@ function handleRadioChange() {
         final.style.height = "auto"
     }
 }
-
 radioButtons.forEach(function(radioButton) {
     radioButton.addEventListener('change', handleRadioChange);
 });
 
+
+// if the final answer button is clicked
 final.addEventListener('click', () => {
+
     //get the needed data
     const body = document.querySelector('body');
     const selectedOption = document.querySelector('input[name="answer"]:checked');
-
 
     //waiting animation
     body.classList.add('inner-shadow');
@@ -73,9 +91,10 @@ final.addEventListener('click', () => {
         allOptions.forEach((option) => {
             const label = option.nextElementSibling;
 
-            //if the answer is correct reflect a green
+            //if the answer is correct reflect a green and stop a timer if there is
             if (option.value == correctAnswer) {
                 label.style.background = 'green';
+                clearInterval(timer);
             }
         });
 
@@ -165,25 +184,20 @@ fiftyLifeline.addEventListener('click', () => {
 
 // call a friend lifeline
 callLifeline.addEventListener('click', () => {
-
     //timer text
     const timerElement = document.querySelector('.call-timer');
-
     //disable the button
     callLifeline.disabled = true;
     callLifeline.style.background = 'gray';
-
     //save the usage of the lifeline, so you cant use it even in refresh
     localStorage.setItem('call', 'false');
-
     //show the notif
     let notif = document.querySelector('#call');
     notif.style.display = 'block';
-
     //seconds in a minute
     let secondsRemaining = 60;
 
-    let timer = setInterval(() => {
+    timer = setInterval(() => {
         if(secondsRemaining >= 0){
             timerElement.innerHTML = `(00:${secondsRemaining})`
             secondsRemaining--

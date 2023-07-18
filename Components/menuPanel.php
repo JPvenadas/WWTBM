@@ -10,16 +10,31 @@
             <button class="menu-button" type="submit" name="newGame">Start game</button>
             </form>
         <?php } ?>
-        <a href="leaderboards.php">
-            <button class="menu-button">Leaderboards</button>
-        </a>
+        <button class="menu-button leaderboard-button">Leaderboard</button>
     </div>
     <form action="../Functions/logout.php" method="POST">
         <button class="menu-button">Logout</button>
     </form>
 </div>
+<script>
 <?php if(!$usernameExist){?>
-    <script>
-        localStorage.clear();
-    </script>
+    localStorage.clear();
 <?php } ?>
+//********************************************* */
+//leaderboard button
+let leaderboardButton = document.querySelector('.leaderboard-button');
+//leaderboard modal
+let leaderboardModal = document.querySelector('.leaderboard-modal');
+// close modal button
+let closebutton = document.querySelector('.close-button');
+//********************************************* */
+
+//show the modal if the button is clicked
+leaderboardButton.addEventListener('click', () => {
+    leaderboardModal.style.display = "flex";
+})
+//close the modal if the close button is clicked
+closebutton.addEventListener('click', ()=>{
+    leaderboardModal.style.display = "none";
+})
+</script>

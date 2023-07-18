@@ -1,15 +1,26 @@
 <?php 
      session_start();
+
      if(isset($_SESSION["userName"])){
 
         //check if there is a saved game, if not dont show the resume button
-        ;include "../Functions/db_conn.php";
+        include "../Functions/db_conn.php";
         $conn = openCon();
         $uname = $_SESSION['userName'];
         $sql = "SELECT EXISTS(SELECT 1 FROM tbl_sessions WHERE userName = '$uname') AS username_exists;";
         $result = mysqli_query($conn, $sql);
         $data = mysqli_fetch_assoc($result);
-        $usernameExist = $data['username_exists']
+        $usernameExist = $data['username_exists'];
+
+
+        $sql = "SELECT * FROM `tbl_scores` WHERE userName = '$uname';";
+        $result = mysqli_query($conn, $sql);
+        $data = mysqli_fetch_assoc($result);
+        if($data){
+            $id = $data['ID'];
+            header("location: gameOver.php?id=$id"); 
+        }
+
 ?>
 
 <!DOCTYPE html>
@@ -27,7 +38,10 @@
 </head>
 
 <body>
-    <?php include "../Components/profile.php";?>
+    <?php 
+    include "../Components/leaderboardModal.php";
+    include "../Components/profile.php";
+    attachProfile('Welcome, ' . $_SESSION['userName']);?>
     <div class="menu-content">
         <div class="logo-container">
             <img class="logo" src="../Images/logo.png" alt="">
@@ -35,6 +49,8 @@
         <?php include "../Components/menuPanel.php"?>
     </div>
 
+    <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+    <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
 </body>
 
 </html>
